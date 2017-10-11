@@ -1,0 +1,178 @@
+body{
+	margin: 0;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	background: url(../images/background.jpg) center center no-repeat;
+	background-size: 100% 100%;
+	
+}
+/*顶端div样式*/
+.top{
+	background:transparent;
+	width: 100%;
+	display: flex;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	
+	
+}
+
+.top div{
+	display: flex;
+	margin: auto;
+}
+
+/*//首页按钮部分样式*/
+.shouye:hover{
+	color: rgb(152,251,152);
+	}
+.shouye{
+	cursor: pointer;
+	
+}
+
+/*//登录按钮部分样式*/
+.denglu{
+	cursor: pointer;
+}
+.denglu:hover{
+	color: rgb(152,251,152);
+}
+
+/*//注册按钮部分样式*/
+.mianfeizhuce{
+	cursor: pointer;
+}
+.mianfeizhuce:hover{
+	color: rgb(152,251,152);
+}
+/*//我的按钮部分样式*/
+.wodeyinyue{
+	cursor: pointer;
+}
+.wodeyinyue:hover{
+	color: rgb(152,251,152);
+}
+
+.searchDiv{
+	background-color: #ADD8E6;
+	width: 400px;
+	margin: 0px auto;
+	padding: 1px;
+	height: 42px;
+	display: block;
+}
+.search{
+	text-align: center;
+	width: 275px;
+	border: 1px solid transparent;
+	height: 36px;
+	margin: 1px;
+	outline:none;
+}
+.searchBtn{
+	width: 110px;
+	border: 1px solid transparent;
+	background-color: #4EEE94;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	
+}
+.searchBtn:hover{
+	cursor: pointer;
+}
+
+.yinyuefenlei table th:hover{
+	cursor: pointer;
+	color:rgb(152,251,152);
+	
+}
+.yinyuefenlei table td:hover{
+	cursor: pointer;
+	color:rgb(152,251,152);
+}
+.yinyuefenlei table th{
+	color: #8B8989;
+}
+.yinyuefenlei table td{
+	font-size: 1rem;
+	color: red;
+	line-height: 3rem;	
+}
+table{
+	width: 100%;
+	font-size: 1.5rem;
+	text-indent: 2rem;
+}
+.yinyuefenlei{
+	background:transparent;
+}
+
+.bottomDiv{
+	background:transparent ;
+	width: 80%;
+	margin: 0px auto;
+	color: red;
+	height:100px;
+}
+.bottomDiv span{
+	float: left;
+}
+.bottomDiv a{
+	float: right;
+	color: red;
+}
+
+
+/*拉丁音乐分类显示部分*/
+.lading table{
+	position: fixed;
+	left:200px;
+	top:150px;
+	color: #CD1076;
+	font-size: 1rem;
+	display: none;
+}
+.lading table td:hover{
+	cursor: pointer;
+	color:rgb(152,251,152);
+}
+
+/*雷鬼音乐分类显示部分*/
+.leigui table{
+	position: fixed;
+	left:200px;
+	top:150px;
+	color: #CD1076;
+	font-size: 1rem;
+	display: none;
+}
+.leigui table td:hover{
+	cursor: pointer;
+	color:rgb(152,251,152);
+}
+
+
+.xiha table{
+	position: fixed;
+	left:200px;
+	top:150px;
+	color: #CD1076;
+	font-size: 1rem;
+	display: none;
+}
+.xiha table td:hover{
+	cursor: pointer;
+	color:rgb(152,251,152);
+}
