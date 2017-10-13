@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>j2ee</name>
+	<name>J2eeMUSIC</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -36,7 +36,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1507543429634</id>
+			<id>0</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -45,7 +45,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1507543429673</id>
+			<id>0</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
