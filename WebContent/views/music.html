@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ 
+  <style type="text/css">
+	.{margin:0;}
+	.header{width:900px;height:50px;background:#9a9a9a;margin:0 auto;text-align:center;}
+	.header span{color:white;line-height:50px;text-shadow:0 0 5px;#fff;font-family:"Microsoft YaHei", "微软雅黑";font-size:25px;}
+ 	.music{width:900px;height:600px;margin:20px auto;opacity:0.9}
+
+	.music-left{width:650px;height:520px;background:url(images/music-bg.gif) center center no-repeat; background-size:100% 100%;float:left;}
+
+	.music-right{width:250px;height:520px;background:#ababab;float:right;}
+	
+	.music-right ul{list-style:none;width:177px;height:220px;}
+	.singer{display:block;margin:10px auto;border-radius:50%;box-shadow:0 0 10px #fff;animation:rotateZ 10s linear infinite}
+	.music-right ul li:nth-child(2){text-align:center
+	;line-height:50px;color:#fff;border-bottom:1px solid #000;}
+	.music-right .text{width:95%;height:260px;}
+	
+	.music-bottom{width:100%;height:80px;background:#8e8eff;float:right;}
+
+	#rel{width:100%;height:100%;background-color:#ababab;text-align:center;color:#99ffff;font-weight:bold;font-size:14px;}
+	#play{width:80px;height:50px;margin:10px 50%;background:#f0baa8;border:none;border-radius:50%;cursor:pointer}
+
+	/*关键帧*/
+	@keyframes rotateZ{
+	from{transform:rotate(0deg);}
+	to{transform:rotate(360deg);}}
+  </style>
+ </head>
+ <body>
+		<div class="header">
+		<span>音乐播放</span>
+		</div>
+	  <div class="music">
+		<div class="music-left"></div>
+		<div class="music-right">
+		<ul>
+			<li><img src="images/xi.png" class="singer" width="150px" height="150px"/></li>
+			<li>《成全》</li>
+		</ul>
+		<div class="text">
+		<textarea id="rel">
+看着你和她
+走到我面前
+微笑地对我说声
+好久不见
+如果当初没有
+我的成全
+是不是今天还在
+原地盘旋
+不为了勉强可笑的尊严
+所有的悲伤丢在
+分手那天
+未必永远
+才算爱得完全
+一个人的成全
+好过三个人的纠结
+我对你付出的青春
+这么多年
+换来了一句谢谢你的成全
+成全了
+你的潇洒与冒险
+成全了
+我的碧海蓝天
+她许你的
+海誓山盟蜜语甜言
+我只有一句不后悔的成全
+成全了
+你的今天与明天
+成全了
+我的下个夏天
+不为了勉强可笑的尊严
+所有的悲伤丢在
+分手那天
+未必永远
+才算爱得完全
+一个人的成全
+好过三个人的纠结
+我对你付出的青春
+这么多年
+换来了一句谢谢你的成全
+成全了
+你的潇洒与冒险
+成全了
+我的碧海蓝天
+她许你的
+海誓山盟蜜语甜言
+我只有一句不后悔的成全
+成全了
+你的今天与明天
+成全了
+我的下个夏天
+我对你付出的青春
+这么多年
+换来了一句谢谢你的成全
+成全了
+你的潇洒与冒险
+成全了
+我的碧海蓝天
+她许你的
+海誓山盟蜜语甜言
+我只有一句不后悔的成全
+成全了
+你的今天与明天
+成全了
+我的下个夏天
+		</textarea>
+		</div>
+		</div>
+		<div class="music-bottom">
+		<input type="button" id="play" value="播放/暂停">
+		</div>
+	  </div>
+
+		<audio src="chengquan.mp3" id="myMusic">
+		
+		</audio>
+	  <script src="js/jquery-3.2.1.js"></script>
+	  <script>
+	  var i=0;
+		//点击按钮播放暂停
+	  $("#play").click(function(){
+		  if(i==0){
+		$("#myMusic").get(0).play();
+		i=1;}else{
+		$("#myMusic").get(0).pause();
+		i=0;
+		}
+
+	  });
+	  </script>
+ </body>
+</html>
