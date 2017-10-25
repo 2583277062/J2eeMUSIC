@@ -6,19 +6,19 @@ import java.util.Set;
 public class User {
 
 	private int id;
-	private	String password;			//ÃÜÂë	32	not-null
-	private Boolean type;				//trueÓÃ»§£¬false¹ÜÀíÔ±	not-null
-	private String name;				//ÓÃ»§Ãû	16
-	private String sign;				//Ç©Ãû	64
-	private Boolean sex;				//trueÄĞ£¬falseÅ®
-	private Date birthday;				//ÉúÈÕ
-	private String location;			//ËùÔÚµØ	64
-	private String email;				//ÓÊÏä	32
+	private	String password;			//ï¿½ï¿½ï¿½ï¿½	32	not-null
+	private Boolean type;				//trueï¿½Ã»ï¿½ï¿½ï¿½falseï¿½ï¿½ï¿½ï¿½Ô±	not-null
+	private String name;				//ï¿½Ã»ï¿½ï¿½ï¿½	16
+	private String sign;				//Ç©ï¿½ï¿½	64
+	private Boolean sex;				//trueï¿½Ğ£ï¿½falseÅ®
+	private Date birthday;				//ï¿½ï¿½ï¿½ï¿½
+	private String location;			//ï¿½ï¿½ï¿½Úµï¿½	64
+	private String email;				//ï¿½ï¿½ï¿½ï¿½	32
 	
-	private Set<Post> posts;				//ËùÓĞ·¢Ìû
-	private Set<Comment> comments;			//ËùÓĞÆÀÂÛ
-	private Set<Collection> collections;	//ËùÓĞÊÕ²Ø
-	private Set<Music> musics;				//ÊÕ²ØµÄÒôÀÖ
+	private Set<Post> posts;				//ï¿½ï¿½ï¿½Ğ·ï¿½ï¿½ï¿½
+	private Set<Comment> comments;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Set<Collection> collections;	//ï¿½ï¿½ï¿½ï¿½ï¿½Õ²ï¿½
+	private Set<Music> musics;				//ï¿½Õ²Øµï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public User(){
 		
@@ -37,8 +37,8 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int userId) {
+		this.id = userId;
 	}
 	public String getPassword() {
 		return password;
@@ -114,7 +114,7 @@ public class User {
 		this.musics = musics;
 	}
 	public void show(){
-		System.out.println("ÓÃ»§Ãû£º"+this.getName()+"£¬ÓÊÏä£º"+this.getEmail());
+		System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½"+this.getName()+"ï¿½ï¿½ï¿½ï¿½ï¿½ä£º"+this.getEmail());
 	}
 
 }

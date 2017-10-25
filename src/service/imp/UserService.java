@@ -20,7 +20,6 @@ public class UserService extends BasicServiceAdapter implements UserServiceInter
 		// TODO Auto-generated method stub
 		User temp=this.getById(u.getId());
 		if(temp!=null){
-			System.out.println("¹þ¹þ");
 			if(temp.getPassword().equals(u.getPassword())){
 				return temp;
 			}
