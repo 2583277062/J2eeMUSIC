@@ -1,5 +1,6 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -8,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>主页面</title>
-		<link rel="stylesheet" href="../css/zhuyemian.css" />
+		<link rel="stylesheet" href="css/zhuyemian.css" />
 		<script type="text/javascript">
 			$(document).ready(function() {
 				window.location.href = "zhujiemian.jsp";
@@ -24,8 +25,12 @@
 			</div>
 			<span>欢迎来到xx音乐</span>
 			<div class="denglu" onclick="dengluClick()">
+			<s:if test="#session.user!=null">
+				<span>${session.user.name }</span>
+			</s:if>
+			<s:else>
 				<span>请登录</span>
-
+			</s:else>
 			</div>
 			<div class="mianfeizhuce" onclick="zhuceClick()">
 				<span>免费注册</span>

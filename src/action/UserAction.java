@@ -6,6 +6,9 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
 import domain.Collection;
 import domain.Post;
 import domain.User;
@@ -14,6 +17,9 @@ import service.inter.PostServiceInter;
 import service.inter.UserServiceInter;
 
 public class UserAction{
+	
+	private int userId;
+	private String password;
 	
 	@Resource
 	UserServiceInter userServiceInter;
@@ -54,6 +60,36 @@ public class UserAction{
 //		}
 //	}
 	
+	public String login() {
+		
+		User u=new User();
+		u.setId(this.userId);
+		u.setPassword(this.password);
+		u=userServiceInter.checkUser(u);
+		if(u==null) {
+			return "error";
+		}
+		ServletActionContext.getRequest().getSession().setAttribute("user", u);
+		return "success";
+		
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 //	public ActionForward goIndex(ActionMapping mapping, ActionForm form,
 //			HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		// TODO Auto-generated method stub
@@ -72,7 +108,7 @@ public class UserAction{
 //	public ActionForward goPostPanel(ActionMapping mapping, ActionForm form,
 //			HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		// TODO Auto-generated method stub
-//		//Ä¬ÈÏÒÑ¾­µÇÂ¼£¬ËùÒÔ²éÑ¯Ò»¶¨²»·µ»Ønull
+//		//Ä¬ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Ñ¯Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null
 //		int userId=((User) request.getSession().getAttribute("user")).getId();
 //		List<Post> posts=postServiceInter.getPostsByUserId(userId);
 //		request.getSession().setAttribute("posts", posts);
@@ -126,4 +162,5 @@ public class UserAction{
 //		request.getSession().setAttribute("collections", collections);
 //		return mapping.findForward("goCollectionPanel");
 //	}
+	
 }

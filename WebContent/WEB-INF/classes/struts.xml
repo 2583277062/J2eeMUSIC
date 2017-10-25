@@ -8,8 +8,9 @@
 <constant name="struts.multipart.saveDir" value="e:" /> 
 
 	<package name="music" extends="struts-default">
-		<action name="UserAction" class="action.UserAction">
-			<result name="success">/temp.jsp</result>
+		<action name="user" class="user">
+			<result name="success">/WEB-INF/views/zhujiemian.jsp</result>
+			<result name="error">/WEB-INF/views/error.jsp</result>
 		</action>
 		
 		<action name="post" class="post">
@@ -17,8 +18,8 @@
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">audio/mp3</param>
 			</interceptor-ref>
-			<result name="success">/WEB-INF/success.jsp</result>
-			<result name="error">/WEB-INF/error.jsp</result>
+			<result name="success">/WEB-INF/views/success.jsp</result>
+			<result name="error">/WEB-INF/views/error.jsp</result>
 		</action>
 	</package>
 	
