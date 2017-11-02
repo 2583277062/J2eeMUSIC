@@ -46,17 +46,22 @@ color:#9b9b9b;border:1px solid red;border-radius:3px;}
 			<span class="lospan">二维码便捷登陆</span>
 			<img src="images/erweima.png" title="扫码登陆"/>
 		</div>
+		
 		<form action="user!login" class="login-middle">
+		
 			<input type="text" name="userId" class="userid" placeholder="用户名/手机/邮箱"/>
 			<input type="text" name="password" class="password" placeholder="密码"/>
+			
 			<div class="tipslogin">
 				<span>下次自动登陆</span>
 				<a href="">忘记密码？</a>
 			</div>
+			
 			<div class="login-button">
 			<!--<a href="">登陆</a>  -->
 			<input type="submit" value="登录"/>
 			</div>
+			
 			<div><a href="" class="register">立即注册</a>
 			</div>
 			<div class="login-bottom">
@@ -65,6 +70,7 @@ color:#9b9b9b;border:1px solid red;border-radius:3px;}
 			<a href="" class="qq"><img src="images/qq.png"/></a>
 			<a href="" class="xinlang"><img src="images/weibo.png"/></a>
 			</div>
+			
 		</form>
 		
 	</div>

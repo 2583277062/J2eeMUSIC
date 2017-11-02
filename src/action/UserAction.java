@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import domain.Collection;
 import domain.Post;
 import domain.User;
@@ -61,7 +63,6 @@ public class UserAction{
 //	}
 	
 	public String login() {
-		
 		User u=new User();
 		u.setId(this.userId);
 		u.setPassword(this.password);
@@ -71,7 +72,19 @@ public class UserAction{
 		}
 		ServletActionContext.getRequest().getSession().setAttribute("user", u);
 		return "success";
-		
+	}
+	
+	public String goLogin() {
+		return "login";
+	}
+	
+	public String goRegister() {
+		return "register";
+	}
+	
+	public String exit() {
+		ServletActionContext.getRequest().getSession().removeAttribute("user");
+		return "exit";
 	}
 
 	public int getUserId() {
