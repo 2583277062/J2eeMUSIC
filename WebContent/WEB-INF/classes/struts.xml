@@ -9,8 +9,11 @@
 
 	<package name="music" extends="struts-default">
 		<action name="user" class="user">
-			<result name="success">/WEB-INF/views/zhujiemian.jsp</result>
+			<result name="success">/WEB-INF/views/main.jsp</result>
 			<result name="error">/WEB-INF/views/error.jsp</result>
+			<result name="login">/WEB-INF/views/login.jsp</result>
+			<result name="register">/WEB-INF/views/register.jsp</result>
+			<result name="exit">/WEB-INF/views/main.jsp</result>
 		</action>
 		
 		<action name="post" class="post">
