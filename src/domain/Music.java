@@ -2,9 +2,9 @@ package domain;
 
 public class Music {
 	private int id;
-	private String name;		//ÒôÀÖÃû
-	private String path;		//·şÎñÆ÷Â·¾¶
-	private User user;			//ÉÏ´«Õß
+	private String name;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String type;		//typeå’Œnameç¡®å®šäº†åœ¨æœåŠ¡å™¨çš„æ–‡ä»¶è·¯å¾„
+	private User user;			//ï¿½Ï´ï¿½ï¿½ï¿½
 	public int getId() {
 		return id;
 	}
@@ -17,11 +17,11 @@ public class Music {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPath() {
-		return path;
+	public String getType() {
+		return type;
 	}
-	public void setPath(String path) {
-		this.path = path;
+	public void setType(String type) {
+		this.type = type;
 	}
 	public User getUser() {
 		return user;

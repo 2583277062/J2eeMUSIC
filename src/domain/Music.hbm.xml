@@ -9,7 +9,7 @@
 		
 		<property name="name" type="string" column="name" not-null="true"/>
 		
-		<property name="path" type="string" column="path"/>
+		<property name="type" type="string" column="type"/>
 		
 		<many-to-one name="user" column="userId"/>
 	</class>

@@ -1,12 +1,33 @@
 package domain;
 
+import java.util.Date;
+import java.util.Random;
+
 public class Comment {
 
 	private Integer id;
-	private User user;				//ÆÀÂÛÕß
-	private Post post;				//ÆÀÂÛµÄÌû×Ó
-	private String content;			//ÄÚÈİ		256
-	private java.util.Date time;	//ÆÀÂÛÊ±¼ä
+	private User user;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Post post;				//ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ï¿½ï¿½
+	private String content;			//ï¿½ï¿½ï¿½ï¿½		256
+	private java.util.Date time;	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	
+	public static Comment randomComment() {
+		Random r=new Random();
+		Comment c=new Comment();
+		c.setUser(new User(1+r.nextInt(20)));
+		c.setPost(new Post(1+r.nextInt(20)));
+		c.setContent(User.randomSign(50));
+		c.setTime(new Date());
+		return c;
+	}
+	
+	public Comment() {
+		
+	}
+	
+	public Comment(int id) {
+		this.id=id;
+	}
 	
 	public Integer getId() {
 		return id;

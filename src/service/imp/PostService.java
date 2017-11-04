@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import domain.Post;
+import domain.User;
 import service.inter.PostServiceInter;
 
 @Transactional
@@ -21,8 +22,19 @@ public class PostService extends BasicServiceAdapter implements PostServiceInter
 		return (Post) sessionFactory.getCurrentSession().get(Post.class, postId);
 	}
 	
+	@Override
+	public void addMany() {
+		// TODO Auto-generated method stub
+		Post p;
+		for(int i=0;i<100;i++) {
+			p=Post.randomPost();
+			this.add(p);
+		}
+	}
+	
 	public List<Post> getLatestPosts(int number){
-		String hql="from Post post order by post.time desc";
+//		String hql="from Post post order by post.time desc";
+		String hql="from Post order by id desc";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		query.setMaxResults(number);
 		List<Post> posts=query.list();
@@ -52,6 +64,7 @@ public class PostService extends BasicServiceAdapter implements PostServiceInter
 		try {
 			File destFile=new File(path,fileName);
 			FileUtils.copyFile(file, destFile);
+			file.delete();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
