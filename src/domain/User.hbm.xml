@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<class name="User" table="User">
+		<id name="id" type="int" column="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="password" type="string" not-null="true" column="password"/>
+		
+		<property name="type" type="java.lang.Boolean" not-null="true" column="type"/>
+		
+		<property name="name" type="string" column="name"/>
+		
+		<property name="sign" type="string" column="sign"/>
+		
+		<property name="sex" type="java.lang.Boolean" column="sex"/>
+		
+		<property name="birthday" type="date" column="birthday"/>
+		
+		<property name="location" type="string" column="location"/>
+		
+		<property name="email" type="string" column="email"/>
+		
+		<set name="posts">
+			<key column="userId"/>
+			<one-to-many class="domain.Post"/>
+		</set>
+		
+		<set name="comments">
+			<key column="userId"/>
+			<one-to-many class="domain.Comment"/>
+		</set>
+		
+		<set name="collections" cascade="delete">
+			<key column="userId"/>
+			<one-to-many class="domain.Collection"/>
+		</set>
+	</class>
+</hibernate-mapping>
