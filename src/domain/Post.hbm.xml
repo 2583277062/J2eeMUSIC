@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<class name="Post" table="Post">
+		<id name="id" type="int" column="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="title" type="string" not-null="true" column="title"/>
+		
+		<many-to-one name="user" column="userId" lazy="false" fetch="join" class="domain.User" not-null="true"/>
+		
+		<property name="content" type="string" column="content"/>
+		
+		<property name="time" type="date" column="time"/>
+		
+		<property name="musicName" type="string" column="musicName"/>
+		
+		<property name="type" type="string" column="type"/>
+		
+		<set name="comments" cascade="all">
+			<key column="postId"/>
+			<one-to-many class="domain.Comment"/>
+		</set>
+	</class>
+</hibernate-mapping>
