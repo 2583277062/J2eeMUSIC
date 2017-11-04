@@ -5,11 +5,14 @@
 package action;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.Servlet;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -33,15 +36,47 @@ public class PostAction{
 	private String userName;
 	private String content;
 	private Date time;
-	private String musicName;
 	private File musicFile;
 	private String musicFileFileName;
-	private String type;
+	private String type;					//typeå’ŒmusicNameå†³å®šäº†éŸ³ä¹æ–‡ä»¶çš„æœåŠ¡å™¨è·¯å¾„
+	private InputStream downloadFile;
 	
-	@Resource(name="postService")
+	@Resource
 	PostServiceInter postServiceInter;
 	@Resource
 	CommentServiceInter commentServiceInter;
+	
+	public String read() {
+		int id=Integer.parseInt(ServletActionContext.getRequest().getParameter("id"));
+//		int id=32;
+		Post p=(Post) postServiceInter.getById(id);
+		ServletActionContext.getRequest().getSession().setAttribute("post", p);
+		List<Comment> comments=commentServiceInter.getByPostIdcodec(id);
+		ServletActionContext.getRequest().getSession().setAttribute("comments", comments);
+//		this.title=p.getTitle();
+//		this.userName=p.getUser().getName();
+//		this.content=p.getContent();
+//		this.time=p.getTime();
+		return "post";
+	}
+	
+	public String download()
+	{
+//		String path=ServletActionContext.getServletContext().getRealPath("/")+"/WEB-INF/resource/";
+		String path="E:/music/";
+		String type=(String) ServletActionContext.getRequest().getAttribute("type");
+		String fileName=(String) ServletActionContext.getRequest().getAttribute("fileName");
+		File file=new File(path+type+"/"+fileName);
+		try {
+			downloadFile=new FileInputStream(file);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+//	    downloadFile=ServletActionContext.getServletContext().getResourceAsStream("../resource/waltz.mp3");
+	    System.out.println(downloadFile);
+	    return "download";
+	}
 	
 //	public ActionForward read(ActionMapping mapping, ActionForm form,
 //			HttpServletRequest request, HttpServletResponse response) {
@@ -69,9 +104,30 @@ public class PostAction{
 //		postServiceInter.add(p);
 //		return mapping.findForward("published");
 //	}
-
-	//±êÌâ£¬×÷ÕßÒÑ¾­ÌîºÃ£¬ÒôÀÖÎÄ¼şÒÑ¾­ÉÏ´«£¬ÆäËûµÄÓÃ´úÂë»ñµÃ
+	
 	public String publish() {
+		if(this.musicFile==null)return "error";
+		Post p=new Post();
+		p.setTitle(this.title);
+		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		p.setUser(u);
+		p.setContent(this.content);
+		p.setTime(new Date());
+		p.setMusicName(this.musicFileFileName);
+//		p.setType(this.type);
+		p.setType("classic");
+		postServiceInter.add(p);
+		
+//		String path=ServletActionContext.getServletContext().getRealPath("/")+"/WEB-INF/resource/music/classic/";
+		String path="E:/music";
+		if(postServiceInter.upLoadFile(this.musicFile, this.musicFileFileName, path)==false)
+			return "error";
+		
+		return "myself";
+	}
+
+	//ï¿½ï¿½ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ñ¾ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½
+	public String publish1() {
 		System.out.println(this.musicFileFileName);
 		System.out.println(this.musicFile);
 		if(this.musicFile==null)return "error";
@@ -80,7 +136,7 @@ public class PostAction{
 		
 		Post p=new Post();
 		p.setTitle(this.title);
-//		p.setTitle("¹ş¹ş");
+//		p.setTitle("ï¿½ï¿½ï¿½ï¿½");
 		p.setUser(u);
 //		p.setUser((User)ServletActionContext.getRequest().getSession().getAttribute("user"));
 //		System.out.println(p.getUser().getId());
@@ -93,7 +149,6 @@ public class PostAction{
 		postServiceInter.add(p);
 		
 		String path=ServletActionContext.getServletContext().getRealPath("/")+"/WEB-INF/resource/music/classic/";
-		
 		
 		if(postServiceInter.upLoadFile(this.musicFile, this.musicFileFileName, path)==false)
 			return "error";
@@ -141,14 +196,6 @@ public class PostAction{
 		this.time = time;
 	}
 
-	public String getMusicName() {
-		return musicName;
-	}
-
-	public void setMusicName(String musicName) {
-		this.musicName = musicName;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -171,5 +218,13 @@ public class PostAction{
 
 	public void setMusicFileFileName(String musicFileFileName) {
 		this.musicFileFileName = musicFileFileName;
+	}
+
+	public InputStream getDownloadFile() {
+		return downloadFile;
+	}
+
+	public void setDownloadFile(InputStream downloadFile) {
+		this.downloadFile = downloadFile;
 	}
 }

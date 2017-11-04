@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 
 import domain.Collection;
+import domain.Music;
 import domain.Post;
 import domain.User;
 import service.inter.CollectionServiceInter;
@@ -62,6 +63,13 @@ public class UserAction{
 //		}
 //	}
 	
+	private void addPosts() {
+//		if(ServletActionContext.getRequest().getSession().getAttribute("posts")==null) {
+			List<Post> posts=postServiceInter.getLatestPosts(5);
+			ServletActionContext.getRequest().getSession().setAttribute("posts", posts);
+//		}
+	}
+	
 	public String login() {
 		User u=new User();
 		u.setId(this.userId);
@@ -71,7 +79,24 @@ public class UserAction{
 			return "error";
 		}
 		ServletActionContext.getRequest().getSession().setAttribute("user", u);
+		addPosts();
 		return "success";
+	}
+	
+	public String myself() {
+		return "myself";
+	}
+	
+	public String myMusic() {
+		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		List<Music> musics=userServiceInter.getMusics(u.getId());
+		ServletActionContext.getRequest().getSession().setAttribute("musics", musics);
+		return "myMusic";
+	}
+	
+	public String goMain() {
+		addPosts();
+		return "main";
 	}
 	
 	public String goLogin() {
@@ -84,6 +109,7 @@ public class UserAction{
 	
 	public String exit() {
 		ServletActionContext.getRequest().getSession().removeAttribute("user");
+		addPosts();
 		return "exit";
 	}
 

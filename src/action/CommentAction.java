@@ -5,8 +5,12 @@
 package action;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.apache.struts2.ServletActionContext;
+
 import domain.Comment;
 import domain.Post;
 import domain.User;
@@ -21,8 +25,47 @@ import service.inter.CommentServiceInter;
  */
 public class CommentAction{
 	
+	private String content; 
+	
 	@Resource
 	CommentServiceInter commentServiceInter;
+	
+	public String publish() {
+		Comment c=new Comment();
+		c.setUser((User) ServletActionContext.getRequest().getSession().getAttribute("user"));
+		c.setPost((Post) ServletActionContext.getRequest().getSession().getAttribute("post"));
+		c.setContent(this.content);
+		c.setTime(new Date());
+		commentServiceInter.add(c);
+		
+		List<Comment> comments=(List<Comment>) ServletActionContext.getRequest().getSession().getAttribute("comments");
+		comments.add(0, c);
+		if(comments.size()>5) {
+			comments.remove(comments.size()-1);
+		}
+		ServletActionContext.getRequest().getSession().setAttribute("comments", comments);
+		return "post";
+	}
+	
+	public String goComment() {
+		return "comment";
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public CommentServiceInter getCommentServiceInter() {
+		return commentServiceInter;
+	}
+
+	public void setCommentServiceInter(CommentServiceInter commentServiceInter) {
+		this.commentServiceInter = commentServiceInter;
+	}
 	
 //	public ActionForward publish(ActionMapping mapping, ActionForm form,
 //			HttpServletRequest request, HttpServletResponse response) {

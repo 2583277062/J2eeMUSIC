@@ -9,7 +9,7 @@
 		
 		<property name="title" type="string" not-null="true" column="title"/>
 		
-		<many-to-one name="user" column="userId" not-null="true"/>
+		<many-to-one name="user" column="userId" lazy="false" fetch="join" class="domain.User" not-null="true"/>
 		
 		<property name="content" type="string" column="content"/>
 		

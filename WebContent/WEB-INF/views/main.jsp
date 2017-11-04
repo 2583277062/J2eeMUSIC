@@ -60,25 +60,7 @@ height:36px;}
  </head>
  <body>
 <!-- 上部分内容 -->
- 	<div class="top-content">
-		<ul class="top-description">
-			<li><a href="">音乐社区</a></li>
-			<li><a href="">论坛</a></li>
-			<li><a href="">热搜榜</a></li>
-			<li class="top-search" style="overflow:hidden">
-				<div class="search-btn"></div>
-			</li>
-			<s:if test="#session.user!=null">
-				<li><button class="music-btn">我的音乐</button></li>
-				<li>欢迎：${session.user.name }</li>
-				<li><a href="user!exit">退出</a></li>
-			</s:if>
-			<s:else>
-				<li><s:a href="user!goLogin">登录</s:a></li>
-				<li><s:a href="user!goRegister">注册</s:a>></li>
-			</s:else>
-		</ul>
-	</div>
+ 	<jsp:include page="/WEB-INF/views/head.jsp"></jsp:include>
 <!-- 上部分内容完毕 -->
 
 	<div class="middle-content">
@@ -140,13 +122,17 @@ height:36px;}
 						<li><a href="">电视原声</a></li>
 					</ul>
 				</div>
+				
 				<div class="hot-info">
 					<div class="hot-info-top">
 					<!-- 添加论坛热帖内容 -->
-					<a href="">jfoweihfjweuh</a>
+					
+					<s:iterator value="#session.posts" id="post">
+    					<s:a href="post!read?id=%{#post.id}"><s:property value="#post.title"/></s:a><br/>
+    				</s:iterator>
+    				
 					</div>
 					<div class="hot-info-bottom">
-						
 						<button>1</button>
 						<button>2</button>
 						<button>3</button>
@@ -154,19 +140,19 @@ height:36px;}
 						<button>5</button>
 						<button>更多>>></button>
 					</div>
-				
 				</div>
+				
 				<div class="tips-div">
 					<ul>
 					<li><span class="tips">打赏榜</span></li>
 					</ul>
 				</div>
+				
 				<div class="reword-info">
 					<div class="reword-info-top">
 					<!-- 添加打赏排行贴内容 -->
 					</div>
 					<div class="reword-info-bottom">
-						
 						<button>1</button>
 						<button>2</button>
 						<button>3</button>
@@ -175,20 +161,17 @@ height:36px;}
 						<button>更多>>></button>
 					</div>
 				</div>
+				
 				<div class="bottom-right-content">
-
-				<a href="">关于论坛</a>
-				<a href="">广告服务</a>
-				<a href="">论坛客服</a>
-				<a href="">隐私和版权</a>
-				<a href="">联系我们</a>
-
+					<a href="">关于论坛</a>
+					<a href="">广告服务</a>
+					<a href="">论坛客服</a>
+					<a href="">隐私和版权</a>
+					<a href="">联系我们</a>
 				</div>
+				
 			</div>
-			
 		</div>
-		
-
 	</div>
 
  </body>

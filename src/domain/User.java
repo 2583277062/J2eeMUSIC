@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Date;
+import java.util.Random;
 import java.util.Set;
 
 public class User {
@@ -34,6 +35,44 @@ public class User {
 		this.location = location;
 		this.email = email;
 	}
+	
+	public User(int id) {
+		this.id=id;
+	}
+	
+	public static User randomUser() {
+		User u=new User();
+		u.setPassword("1");
+		u.setType(true);
+		u.setName(User.randomName(10));
+		u.setSign(User.randomSign(20));
+		u.setSex(true);
+		u.setBirthday(new Date());
+		u.setLocation("a");
+		u.setEmail("a");
+		return u;
+	}
+	
+	public static String randomName(int length) {
+		String s="";
+		int a=(length>10? 10:length);
+		Random r=new Random();
+		for(int i=0;i<a;i++) {
+			s+=(char) (97+r.nextInt(26));
+		}
+		return s;
+	}
+	
+	public static String randomSign(int length) {
+		String s="";
+		int a=(length>2000? 2000:length);
+		Random r=new Random();
+		for(int i=0;i<a;i++) {
+			s+=(char) (33+r.nextInt(94));
+		}
+		return s;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -112,9 +151,6 @@ public class User {
 	}
 	public void setMusics(Set<Music> musics) {
 		this.musics = musics;
-	}
-	public void show(){
-		System.out.println("�û�����"+this.getName()+"�����䣺"+this.getEmail());
 	}
 
 }

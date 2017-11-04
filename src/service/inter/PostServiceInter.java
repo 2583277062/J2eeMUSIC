@@ -7,6 +7,7 @@ import domain.Post;
 
 public interface PostServiceInter extends BasicServiceInter {
 
+	public void addMany();
 	public List<Post> getPostsByUserId(int userId);
 	public List<Post> getLatestPosts(int number);
 	public List<Post> getPostsCommended(int userId);
