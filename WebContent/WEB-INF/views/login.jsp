@@ -47,7 +47,7 @@ color:#9b9b9b;border:1px solid red;border-radius:3px;}
 			<img src="images/erweima.png" title="扫码登陆"/>
 		</div>
 		
-		<form action="user!login" class="login-middle">
+		<form action="user!login" class="login-middle" method="post">
 		
 			<input type="text" name="userId" class="userid" placeholder="用户名/手机/邮箱"/>
 			<input type="text" name="password" class="password" placeholder="密码"/>

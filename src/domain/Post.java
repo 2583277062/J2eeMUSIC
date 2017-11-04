@@ -1,17 +1,18 @@
 package domain;
 
 import java.util.Date;
+import java.util.Random;
 import java.util.Set;
 
 public class Post {
 
 	private int id;
-	private String title;			//Ìû×Ó±êÌâ	32
-	private User user;				//×÷Õß
-	private String content;			//ÄÚÈİ		4096
-	private Date time;				//·¢ÌûÊ±¼ä
-	private String musicName;		//ÒôÀÖÃû
-	private String type;			//Ìû×ÓÀàĞÍ
+	private String title;			//ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½	32
+	private User user;				//ï¿½ï¿½ï¿½ï¿½
+	private String content;			//ï¿½ï¿½ï¿½ï¿½		4096
+	private Date time;				//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	private String musicName;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String type;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	private Set<Comment> comments;
 	
@@ -26,6 +27,22 @@ public class Post {
 		this.musicName=musicName;
 		this.type=type;
 	}
+	
+	public Post(int id) {
+		this.id=id;
+	}
+	
+	public static Post randomPost() {
+		Random r=new Random();
+		Post p=new Post();
+		p.setTitle(User.randomName(5));
+		p.setUser(new User(1+r.nextInt(20)));
+		p.setContent(User.randomSign(100));
+		p.setTime(new Date());
+		return p;
+	} 
+	
+	
 	public int getId() {
 		return id;
 	}

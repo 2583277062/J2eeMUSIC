@@ -59,8 +59,8 @@
 
 <!-- Action -->
 <bean name="user" class="action.UserAction" scope="prototype"/>
-<bean name="post" class="action.PostAction" scope="prototype"/>
-<bean name="comment" class="action.CommentAction" scope="prototype"/>
+<bean id="post" class="action.PostAction" scope="prototype"/>
+<bean name="/comment" class="action.CommentAction" scope="prototype"/>
 <bean name="/collection" class="action.CollectionAction" scope="prototype"/>
 
 <!-- Service -->
