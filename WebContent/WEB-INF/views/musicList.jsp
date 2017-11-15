@@ -15,17 +15,28 @@ pageEncoding="UTF-8"%>
   *{margin:0px;}
   li{list-style:none}
   /* 上部分样式 */
-  body{background:url(images/music-bg.jpg) center center no-repeat;background-size:cover;}
+  body{background:url(images/info-bg.jpg) center center no-repeat;background-size:cover;}
+body a{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+	body span{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+a:hover{color:red}
 *{margin:0px;}
-	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2}
-	a{text-decoration:none;display:block;font-size:16px;color:white}
+	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2;border-radius:5px;box-shadow:0 0 20px #6affff}
+	.top-content a{color:white;text-decoration:none;display:block;font-size:16px;float:right}
 	.top-description li{list-style:none;margin-left:20px;float:left;line-height:44px;}
 	.top-description .top-search{
 	width:325px;
 height:36px;}
 	.top-description .search-btn{
 	background: url(http://static.tianyaui.com/global/bbs/web/static/images/top-nav-bg_3264908.png) no-repeat #F7F7F7 0 -342px;width:30px;height: 30px;cursor: pointer;display: block;z-index: 1;margin-top: 8px;}
-	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;margin-top:15px;}
+	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;}
 	/* 上部分样式完毕 */
 	
 	.music-content{width:80%;height:600px;margin:50px auto;font-size:40px;font-weight:bold;color:#ffffff;}
@@ -54,19 +65,8 @@ height:36px;}
   </style>
  </head>
  <body>
-  <div class="top-content">
-		<ul class="top-description">
-			<li><a href="">音乐社区</a></li>
-			<li><a href="">论坛</a></li>
-			<li><a href="">热搜榜</a></li>
-			<li class="top-search" style="overflow:hidden">
-				<div class="search-btn"></div>
-			</li>
-			<li><button class="music-btn">我的音乐</button></li>
-			<li><a href="">登录</a></li>
-			<li><a href="">注册</a></li>
-		</ul>
-	</div>
+  <jsp:include page="/WEB-INF/views/head.jsp"></jsp:include>
+	
 	<div class="music-content">
 		<div class="head-musiclist">
 		<span>我的音乐</span>
@@ -77,24 +77,43 @@ height:36px;}
 		<div class="musiclist">
 		<ul>
 		<li>音乐名称</li>
-		
 		<li>
 		<div class="music">
 			<div class="music-left">
-				<a href="">第一次</a>
+				成全
 			</div>
 			<div class="music-center">
-				光良
+				tango
 			</div>
 			<div class="music-right">
-				<a href="" class="start-stop"><!-- <img src="images/start.jpg" width="40px" height="40px" class="start-btn"> -->
+				<a href="user!playMusic"><!-- <img src="images/start.jpg" width="40px" height="40px" class="start-btn"> -->
 				播放
 				</a>
 			</div>
 		</div>
 		</li>
+		<s:iterator value="#session.musics" id="music">
+		<li>
+		<div class="music">
+			<div class="music-left">
+				<s:property value="#music.name"/>
+			</div>
+			<div class="music-center">
+				<s:property value="#music.type"/>
+			</div>
+			<div class="music-right">
+				<a href="post!download?type=<s:property value="#music.type"/>&musicFileFileName=<s:property value="#music.name"/>" class="start-stop"><!-- <img src="images/start.jpg" width="40px" height="40px" class="start-btn"> -->
+				播放
+				</a>
+			</div>
+		</div>
+		</li>
+		</s:iterator>
+		
 		</ul>
 		</div>
+	
+	
 	</div>
  </body>
 </html>

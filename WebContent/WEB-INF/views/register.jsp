@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
   <meta name="Keywords" content="">
   <meta name="Description" content="">
   <title>注册</title>
-  <style type="text/css">
+   <style type="text/css">
   li{list-style:none}
   a{text-decoration:none;}
   body{background:url(images/bg-register.jpg) center center no-repeat;background-size:cover;
@@ -30,12 +30,12 @@ pageEncoding="UTF-8"%>
   .middle-content .password{margin-top:30px;width:300px;height:30px;border-radius:5px;}
   .middle-content .phonenum{margin-top:30px;width:300px;height:30px;border-radius:5px;}
   .middle-content .verification{margin-top:30px;width:150px;height:30px;border-radius:5px;}
-  .verification-btn{width:150px;height:30px;background:#46ec4f;cursor:pointer}
-  .bottom-register{margin-top:10px;width:300px;height:30px; text-align:center;line-height:30px;background:#82db51;margin-left:580px;border-radius:5px;}
+  .verification-btn{width:150px;height:30px;background:#c1ffff;cursor:pointer}
+  .bottom-register{margin-top:10px;width:300px;height:30px; text-align:center;line-height:30px;background:#c0c0c0;margin-left:580px;border-radius:5px;}
   </style>
  </head>
  <body>
-	  <div class="register">
+	  <form action="user!regist" class="register" method="post">
 		<div class="top-content">
 			<span>音乐天地</span>
 			
@@ -49,30 +49,30 @@ pageEncoding="UTF-8"%>
 		<ul>
 		
 		<li>
-		<span>用户名：</span>
-		<input type="text" class="userid" placeholder="请输入用户名"/>
+			<span>用户名：</span>
+			<input type="text" name="name" class="userid" placeholder="请输入用户名"/>
 		</li>
 		<li>
-		<span> &nbsp;&nbsp;密码 ：</span>
-		<input type="text" class="password" placeholder="请输入密码"/>
+			<span> &nbsp;&nbsp;密码 ：</span>
+			<input type="text" name="password" class="password" placeholder="请输入密码"/>
 		</li>
 		<li>
-		<span>手机号：</span>
-		<input type="text" class="phonenum" placeholder="请输入手机号"/>
+			<span>手机号：</span>
+			<input type="text" class="phonenum" placeholder="请输入手机号"/>
 		</li>
 		<li>
-		<span>验证码：</span>
-		<input type="text" class="verification" placeholder="请输入验证码"/>
-		<button class="verification-btn">获取语音验证码</button>
+			<span>验证码：</span>
+			<input type="text" class="verification" placeholder="请输入验证码"/>
+			<button class="verification-btn">获取语音验证码</button>
 		</li>
 		
 		</ul>
 		
 		</div>
 		<div class="bottom-register">
-		<a href="">立即注册</a>
+		<input type="submit" value="立即注册">
 		</div>
 		
-	  </div>
+	  </form>
  </body>
 </html>

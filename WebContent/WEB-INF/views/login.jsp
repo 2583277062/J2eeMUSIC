@@ -7,6 +7,12 @@
 <meta name="Description" content="描述信息"/>
 <title></title>
 <style type="text/css">
+body{background:url(images/bg-register.jpg) center center no-repeat;background-size:cover;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
 /* 去掉所有a链接的的下划线 */
 a{text-decoration:none;}
 
@@ -17,7 +23,7 @@ a{text-decoration:none;}
 .login-top{width:100%;background-color:#c0c0c0;font-family:YouYuan;height:40px;color:#fff;font-size:24px;line-height:40px;
 }
 .login-top span{margin-left:40px;cursor:pointer;}
-.top-button{width:20px;height:20px;float:right;margin-right:40px;margin-top:10px;}
+.login-top a{ display:block;width:20px;height:20px;float:right;margin-right:40px;background:transparent;border:none;color:white;cursor:pointer;}
 
 /* 二维码登录样式 */
 .select2d{width:55%;height:40px;float:right;margin-top:10px;cursor:pointer;}
@@ -40,6 +46,7 @@ color:#9b9b9b;border:1px solid red;border-radius:3px;}
 	<div class="login">
 		<div class="login-top">
 			<span>音乐天地</span>
+			<a href="">×</a>
 			<!-- <img src="" class="top-button"/> -->
 		</div>
 		<div class="select2d">
@@ -50,7 +57,7 @@ color:#9b9b9b;border:1px solid red;border-radius:3px;}
 		<form action="user!login" class="login-middle" method="post">
 		
 			<input type="text" name="userId" class="userid" placeholder="用户名/手机/邮箱"/>
-			<input type="text" name="password" class="password" placeholder="密码"/>
+			<input type="password" name="password" class="password" placeholder="密码"/>
 			
 			<div class="tipslogin">
 				<span>下次自动登陆</span>

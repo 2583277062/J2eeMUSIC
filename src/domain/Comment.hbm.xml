@@ -4,7 +4,7 @@
 <hibernate-mapping package="domain">
 	<class name="Comment" table="comment">
 		<id name="id" type="java.lang.Integer">
-			<generator class="native"/>
+			<generator class="increment"/>
 		</id>
 		<many-to-one name="user" lazy="false" fetch="join" class="domain.User" column="userId" not-null="true"/>
 		<many-to-one name="post" lazy="false" fetch="join" class="domain.Post" column="postId" not-null="true"/>

@@ -18,7 +18,7 @@
 				<div class="search-btn"></div>
 			</li>
 			<s:if test="#session.user!=null">
-				<li><button class="music-btn">我的音乐</button></li>
+				<li><a class="music-btn" href="user!myMusic">我的音乐</a></li>
 				<li><a href="user!myself">欢迎：<s:property value="#session.user.name"/></a></li>
 				<li><a href="user!exit">退出</a></li>
 			</s:if>

@@ -1,5 +1,6 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import domain.Music;
 import domain.Post;
 import domain.User;
 import service.inter.CollectionServiceInter;
+import service.inter.MusicServiceInter;
 import service.inter.PostServiceInter;
 import service.inter.UserServiceInter;
 
@@ -23,6 +25,8 @@ public class UserAction{
 	
 	private int userId;
 	private String password;
+	private String name;
+	private String sign;
 	
 	@Resource
 	UserServiceInter userServiceInter;
@@ -30,6 +34,8 @@ public class UserAction{
 	PostServiceInter postServiceInter;
 	@Resource
 	CollectionServiceInter collectionServiceInter;
+	@Resource
+	MusicServiceInter musicServiceInter;
 
 	public void setUserServiceInter(UserServiceInter userServiceInter) {
 		this.userServiceInter = userServiceInter;
@@ -63,6 +69,18 @@ public class UserAction{
 //		}
 //	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMusicServiceInter(MusicServiceInter musicServiceInter) {
+		this.musicServiceInter = musicServiceInter;
+	}
+
 	private void addPosts() {
 //		if(ServletActionContext.getRequest().getSession().getAttribute("posts")==null) {
 			List<Post> posts=postServiceInter.getLatestPosts(5);
@@ -70,7 +88,26 @@ public class UserAction{
 //		}
 	}
 	
+	public String regist() {
+		User u=new User();
+		u.setName(this.name);
+		u.setPassword(this.password);
+		u.setType(true);
+		userServiceInter.add(u);
+		return "regist";
+	}
+	
+	public String update() {
+		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		u.setSign(this.sign);
+		userServiceInter.update(u);
+		return "update";
+	}
+	
 	public String login() {
+		if(0==this.userId&&"admin".equals(this.password)) {
+			return "admin";
+		}
 		User u=new User();
 		u.setId(this.userId);
 		u.setPassword(this.password);
@@ -84,14 +121,34 @@ public class UserAction{
 	}
 	
 	public String myself() {
+		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		List<Collection> collections=collectionServiceInter.getByUserId(u.getId());
+		List<Post> posts = new ArrayList<Post>();
+		for(Collection col : collections) {
+			Post p=(Post) postServiceInter.getById(col.getPost().getId());
+			posts.add(p);
+		}
+		ServletActionContext.getRequest().getSession().setAttribute("posts",posts);
 		return "myself";
 	}
 	
 	public String myMusic() {
 		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		List<Music> musics=userServiceInter.getMusics(u.getId());
+		List<Music> musics=musicServiceInter.getMusicsByUserId(u.getId());
 		ServletActionContext.getRequest().getSession().setAttribute("musics", musics);
 		return "myMusic";
+	}
+	
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public String playMusic() {
+		return "playMusic";
 	}
 	
 	public String goMain() {

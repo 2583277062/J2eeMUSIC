@@ -8,9 +8,6 @@
 		</id>
 		<many-to-one name="user" column="userId" not-null="true"/>
 		<many-to-one name="post" column="postId" not-null="true"/>
-		<property name="comment" type="java.lang.String">
-			<column name="comment" length="128"/>
-		</property>
 		<property name="time" type="java.util.Date">
 			<column name="time"/>
 		</property>

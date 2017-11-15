@@ -14,15 +14,29 @@
   <style type="text/css">
   *{margin:0px;}
   /* 上部分样式 */
+	body a{
+	text-decoration:none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+	body span{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+a:hover{color:red}
+*{margin:0px;}
 	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2}
-	a{text-decoration:none;display:block;font-size:16px;color:white}
+	.top-content a{text-decoration:none;display:block;font-size:16px;}
 	.top-description li{list-style:none;margin-left:20px;float:left;line-height:44px;}
 	.top-description .top-search{
 	width:325px;
 height:36px;}
 	.top-description .search-btn{
 	background: url(http://static.tianyaui.com/global/bbs/web/static/images/top-nav-bg_3264908.png) no-repeat #F7F7F7 0 -342px;width:30px;height: 30px;cursor: pointer;display: block;z-index: 1;margin-top: 8px;}
-	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#000000}
+	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;}
 /* 上部分样式完毕 */
 
 
@@ -54,9 +68,8 @@ height:36px;}
 	.bottom-right-content a{display:inline-block;margin-left:20px;}
 	.hot-info .hot-info-top a{display:block;text-indent:50px;color:#00ffcc}
 /* 中间右边样式完毕 */
+  </style>
 
-
- </style>
  </head>
  <body>
 <!-- 上部分内容 -->

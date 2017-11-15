@@ -3,7 +3,16 @@
  * Template path: templates/java/JavaClass.vtl
  */
 package action;
+import java.util.Date;
+
 import javax.annotation.Resource;
+import javax.servlet.Servlet;
+
+import org.apache.struts2.ServletActionContext;
+
+import domain.Collection;
+import domain.Post;
+import domain.User;
 import service.inter.CollectionServiceInter;
 
 /** 
@@ -22,6 +31,25 @@ public class CollectionAction{
 			CollectionServiceInter collectionServiceInter) {
 		this.collectionServiceInter = collectionServiceInter;
 	}
+	
+	public String collect() {
+		Collection c=new Collection();
+		c.setPost((Post) ServletActionContext.getRequest().getSession().getAttribute("post"));
+		c.setUser((User) ServletActionContext.getRequest().getSession().getAttribute("user"));
+		c.setTime(new Date());
+		collectionServiceInter.add(c);
+		return "collect";
+	}
+	
+	public String delete() {
+		Collection c=new Collection();
+		int userId=((User)ServletActionContext.getRequest().getSession().getAttribute("user")).getId();
+		int postId=Integer.parseInt(ServletActionContext.getRequest().getParameter("postId"));
+		c=collectionServiceInter.getByUserPost(userId, postId);
+		collectionServiceInter.delete(c);
+		return "delete";
+	}
+
 	
 //	public ActionForward add(ActionMapping mapping, ActionForm form,
 //			HttpServletRequest request, HttpServletResponse response) {

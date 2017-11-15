@@ -8,6 +8,8 @@ import domain.User;
 public interface UserServiceInter extends BasicServiceInter {
 
 	public User checkUser(User u);
-	public List<Music> getMusics(int userId);
+	public List<User> getUsers();
 	public void addMany();
+	public void deleteById(int userId);
+	public List<User> getUsersByStr(String str);
 }

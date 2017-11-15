@@ -1,4 +1,8 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
  <head>
   <meta charset="UTF-8">
@@ -28,7 +32,8 @@
 
 	#rel{width:100%;height:100%;background-color:#ababab;text-align:center;color:#99ffff;font-weight:bold;font-size:14px;}
 	#play{width:80px;height:50px;margin:10px 50%;background:#f0baa8;border:none;border-radius:50%;cursor:pointer}
-
+	.header a{display:block;color:white;float:left;margin-left:30px;text-decoration:none;line-height:50px;}
+	
 	/*关键帧*/
 	@keyframes rotateZ{
 	from{transform:rotate(0deg);}
@@ -38,6 +43,9 @@
  <body>
 		<div class="header">
 		<span>音乐播放</span>
+		<a href="" class="main-back">首页</a>
+		<a href="" class="download">下载</a>
+		<a href="">我的音乐</a>
 		</div>
 	  <div class="music">
 		<div class="music-left"></div>
@@ -120,7 +128,7 @@
 		</div>
 	  </div>
 
-		<audio src="chengquan.mp3" id="myMusic">
+		<audio src="music/chengquan.mp3" id="myMusic">
 		
 		</audio>
 	  <script src="js/jquery-3.2.1.js"></script>

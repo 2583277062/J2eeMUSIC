@@ -7,6 +7,7 @@ package action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +18,12 @@ import javax.servlet.Servlet;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import domain.Comment;
+import domain.Music;
 import domain.Post;
 import domain.User;
 import service.imp.PostService;
 import service.inter.CommentServiceInter;
+import service.inter.MusicServiceInter;
 import service.inter.PostServiceInter;
 
 /** 
@@ -45,6 +48,8 @@ public class PostAction{
 	PostServiceInter postServiceInter;
 	@Resource
 	CommentServiceInter commentServiceInter;
+	@Resource
+	MusicServiceInter musicServiceInter;
 	
 	public String read() {
 		int id=Integer.parseInt(ServletActionContext.getRequest().getParameter("id"));
@@ -60,13 +65,24 @@ public class PostAction{
 		return "post";
 	}
 	
-	public String download()
+	public String delete() {
+		Post p=(Post) ServletActionContext.getRequest().getSession().getAttribute("post");
+		postServiceInter.delete(p);
+		List<Post> posts=postServiceInter.getLatestPosts(5);
+		ServletActionContext.getRequest().getSession().setAttribute("posts", posts);
+		return "main";
+	}
+	
+	public String download() throws UnsupportedEncodingException
 	{
 //		String path=ServletActionContext.getServletContext().getRealPath("/")+"/WEB-INF/resource/";
 		String path="E:/music/";
-		String type=(String) ServletActionContext.getRequest().getAttribute("type");
-		String fileName=(String) ServletActionContext.getRequest().getAttribute("fileName");
-		File file=new File(path+type+"/"+fileName);
+		String xx=new String(musicFileFileName.getBytes("ISO8859-1"),"UTF-8");
+		String fileName=path+type+"/"+xx+".mp3";
+//		String type=(String) ServletActionContext.getRequest().getAttribute("type");
+//		String fileName=(String) ServletActionContext.getRequest().getAttribute("fileName");
+		System.out.println(fileName);
+		File file=new File(fileName);
 		try {
 			downloadFile=new FileInputStream(file);
 		}catch (Exception e) {
@@ -74,7 +90,7 @@ public class PostAction{
 			e.printStackTrace();
 		}
 //	    downloadFile=ServletActionContext.getServletContext().getResourceAsStream("../resource/waltz.mp3");
-	    System.out.println(downloadFile);
+//	    System.out.println(downloadFile);
 	    return "download";
 	}
 	
@@ -106,22 +122,28 @@ public class PostAction{
 //	}
 	
 	public String publish() {
-		if(this.musicFile==null)return "error";
+		if(this.musicFile==null||"".equals(this.title)||"".equals(this.content))return "error";
 		Post p=new Post();
 		p.setTitle(this.title);
 		User u=(User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		p.setUser(u);
 		p.setContent(this.content);
 		p.setTime(new Date());
-		p.setMusicName(this.musicFileFileName);
-//		p.setType(this.type);
-		p.setType("classic");
+		p.setMusicName(this.musicFileFileName.split("\\.")[0]);
+		this.type="classic";
+		p.setType(this.type);
 		postServiceInter.add(p);
 		
 //		String path=ServletActionContext.getServletContext().getRealPath("/")+"/WEB-INF/resource/music/classic/";
-		String path="E:/music";
+		String path="E:/music/"+this.type;
 		if(postServiceInter.upLoadFile(this.musicFile, this.musicFileFileName, path)==false)
 			return "error";
+		
+		Music m=new Music();
+		m.setName(this.musicFileFileName.split("\\.")[0]);
+		m.setType(this.type);
+		m.setUser(u);
+		musicServiceInter.add(m);
 		
 		return "myself";
 	}
@@ -162,6 +184,14 @@ public class PostAction{
 
 	public void setPostServiceInter(PostServiceInter postServiceInter) {
 		this.postServiceInter = postServiceInter;
+	}
+
+	public MusicServiceInter getMusicServiceInter() {
+		return musicServiceInter;
+	}
+
+	public void setMusicServiceInter(MusicServiceInter musicServiceInter) {
+		this.musicServiceInter = musicServiceInter;
 	}
 
 	public String getTitle() {

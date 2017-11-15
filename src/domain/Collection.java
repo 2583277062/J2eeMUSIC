@@ -3,10 +3,10 @@ package domain;
 public class Collection {
 
 	private Integer id;
-	private User user;				//ÊÕ²ØÕß
-	private Post post;				//±»ÊÕ²ØµÄÌû×Ó
-	private String comment;			//ÊÕ²Ø¸ÐÏë		128
-	private java.util.Date time;	//ÊÕ²ØÊ±¼ä
+	private User user;				//ï¿½Õ²ï¿½ï¿½ï¿½
+	private Post post;				//ï¿½ï¿½ï¿½Õ²Øµï¿½ï¿½ï¿½ï¿½ï¿½
+//	private String comment;			//ï¿½Õ²Ø¸ï¿½ï¿½ï¿½		128
+	private java.util.Date time;	//ï¿½Õ²ï¿½Ê±ï¿½ï¿½
 	
 	public Integer getId() {
 		return id;
@@ -26,12 +26,12 @@ public class Collection {
 	public void setPost(Post post) {
 		this.post = post;
 	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+//	public String getComment() {
+//		return comment;
+//	}
+//	public void setComment(String comment) {
+//		this.comment = comment;
+//	}
 	public java.util.Date getTime() {
 		return time;
 	}
