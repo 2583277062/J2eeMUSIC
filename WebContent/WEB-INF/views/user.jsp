@@ -15,17 +15,28 @@
  <body>
   <style type="text/css">
   /* 上部分样式 */
-  body{background:url(images/info-bg.jpg) center center no-repeat;background-size:cover;}
+ body{background:url(images/info-bg.jpg) center center no-repeat;background-size:cover;}
+body a{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+	body span{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+a:hover{color:red}
 *{margin:0px;}
-	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2}
-	a{text-decoration:none;display:block;font-size:16px;color:white}
+	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2;border-radius:5px;box-shadow:0 0 20px #6affff}
+	.top-content a{color:white;text-decoration:none;display:block;font-size:16px;float:right}
 	.top-description li{list-style:none;margin-left:20px;float:left;line-height:44px;}
 	.top-description .top-search{
 	width:325px;
 height:36px;}
 	.top-description .search-btn{
 	background: url(http://static.tianyaui.com/global/bbs/web/static/images/top-nav-bg_3264908.png) no-repeat #F7F7F7 0 -342px;width:30px;height: 30px;cursor: pointer;display: block;z-index: 1;margin-top: 8px;}
-	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;margin-top:15px;}
+	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;}
 /* 上部分样式完毕 */
 
 /* 中间部分样式 */
@@ -83,9 +94,9 @@ box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
 				<button>关注:<p>300</p></button>
 			</div>
 			
-			<div class="person-information">
+			<form action="user!update" method="post" class="person-information">
 			<ul>
-				<li>签名：<s:property value="#session.user.sign"/></li>
+				<li>签名：<s:textfield name="sign" value="%{#session.user.sign}"/></li>
 				<li>性别：
 				<s:if test="#session.user.sex==true">男</s:if>
 				<s:else>女</s:else>
@@ -93,8 +104,9 @@ box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
 				<li>生日：<s:property value="#session.user.birthday"/></li>
 				<li>所在地：<s:property value="#session.user.location"/></li>
 				<li>邮箱：<s:property value="#session.user.email"/></li>
+				<li><input type="submit" value="修改"/></li>
 			</ul>
-			</div>
+			</form>
 			
 			<s:form action="post!publish" method="post" enctype="multipart/form-data">
 				<s:textfield type="text" name="title" id="head-comment" placeholder="用请输入发帖标题"/>
@@ -102,12 +114,14 @@ box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
 				<s:submit type="submit" value="发布帖子"/>
 				<s:file name="musicFile" label="添加音乐"/>
 			</s:form>
-		
 		</div>
 		<div class="right-information"> 
-		<span>收藏信息</span>
-		
+			<span>收藏信息</span>
+			<div class="hot-info-top">
+				<s:iterator value="#session.posts" id="post">
+    				<s:a href="post!read?id=%{#post.id}"><s:property value="#post.title"/></s:a>    <s:property value="#post.content.substring(0,10)"/>    <s:a href="collection!delete?postId=%{#post.id}">删除</s:a><br/>
+    			</s:iterator>
+			</div>
 		</div>
-	
-	<div>
+	</div>
 </html>

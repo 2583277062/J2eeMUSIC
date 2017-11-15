@@ -11,9 +11,11 @@ pageEncoding="UTF-8"%>
   <meta name="Keywords" content="">
   <meta name="Description" content="">
   <title>回复或评论</title>
-  <style type="text/css">
-	body{background:url(images/bg-register.jpg) center center no-repeat;background-size:cover;}
-	#textarea {  
+   <style type="text/css">
+	body{background:url(../images/bg-register.jpg) center center no-repeat;background-size:cover;}
+	#textarea {  outline: 0 none;  
+                border-color: rgba(82, 168, 236, 0.8);  
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6); 
 				height:300px;
                 display: block;  
                 margin: 10px auto;  
@@ -38,7 +40,7 @@ pageEncoding="UTF-8"%>
 	.top-content{width:100%;height:50px;}
 	.top-content span{line-height:50px;margin-left:2rem;font-weight:bold;font-size:18px;color:#07c8f8}
 	.bottom-content a{text-decoration:none;display:inline-block;border:2px solid #07c8f8;border-radius:5px;width:80px;height:20px;text-align:center;float:left;}
-	.bottom-content button{float:right;width:100px;height:50px;border-radius:50%;cursor:pointer;background-color:#a4ebfd}
+	.bottom-content .submit{float:right;width:80px;height:50px;border-radius:50%;cursor:pointer;background-color:#a4ebfd;line-height:50px;font-weight:bold;color:white}
   </style>
   <script>  
             /**  

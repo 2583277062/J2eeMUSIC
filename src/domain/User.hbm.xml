@@ -4,7 +4,7 @@
 <hibernate-mapping package="domain">
 	<class name="User" table="User">
 		<id name="id" type="int" column="id">
-			<generator class="native"/>
+			<generator class="increment"/>
 		</id>
 		
 		<property name="password" type="string" not-null="true" column="password"/>
@@ -23,17 +23,17 @@
 		
 		<property name="email" type="string" column="email"/>
 		
-		<set name="posts">
+		<set name="posts" inverse="true" cascade="delete">
 			<key column="userId"/>
 			<one-to-many class="domain.Post"/>
 		</set>
 		
-		<set name="comments">
+		<set name="comments" inverse="true" cascade="delete">
 			<key column="userId"/>
 			<one-to-many class="domain.Comment"/>
 		</set>
 		
-		<set name="collections" cascade="delete">
+		<set name="collections" inverse="true" cascade="delete">
 			<key column="userId"/>
 			<one-to-many class="domain.Collection"/>
 		</set>

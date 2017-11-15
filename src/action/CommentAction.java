@@ -26,10 +26,19 @@ import service.inter.CommentServiceInter;
 public class CommentAction{
 	
 	private String content; 
+	private int id;
 	
 	@Resource
 	CommentServiceInter commentServiceInter;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String publish() {
 		Comment c=new Comment();
 		c.setUser((User) ServletActionContext.getRequest().getSession().getAttribute("user"));
@@ -43,6 +52,17 @@ public class CommentAction{
 		if(comments.size()>5) {
 			comments.remove(comments.size()-1);
 		}
+		ServletActionContext.getRequest().getSession().setAttribute("comments", comments);
+		return "post";
+	}
+	
+	public String delete() {
+		int id=Integer.parseInt(ServletActionContext.getRequest().getParameter("id"));
+		System.out.println(id);
+		Comment c=(Comment) commentServiceInter.getById(id);
+		commentServiceInter.delete(c);
+		Post p=(Post) ServletActionContext.getRequest().getSession().getAttribute("post");
+		List<Comment> comments=commentServiceInter.getByPostIdcodec(p.getId());
 		ServletActionContext.getRequest().getSession().setAttribute("comments", comments);
 		return "post";
 	}

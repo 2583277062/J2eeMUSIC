@@ -18,6 +18,10 @@
 			<result name="main">/WEB-INF/views/main.jsp</result>
 			<result name="myself">/WEB-INF/views/user.jsp</result>
 			<result name="myMusic">/WEB-INF/views/musicList.jsp</result>
+			<result name="playMusic">/WEB-INF/views/musicPlay.jsp</result>
+			<result name="regist">/WEB-INF/views/main.jsp</result>
+			<result name="update">/WEB-INF/views/user.jsp</result>
+			<result name="admin">/WEB-INF/views/admin.jsp</result>
 		</action>
 		
 		<action name="post" class="post">
@@ -25,6 +29,7 @@
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">audio/mp3</param>
 			</interceptor-ref>
+			<result name="main">/WEB-INF/views/main.jsp</result>
 			<result name="post">/WEB-INF/views/post.jsp</result>
 			<result name="myself">/WEB-INF/views/user.jsp</result>
 			<result name="success">/WEB-INF/views/success.jsp</result>
@@ -32,7 +37,7 @@
 			<result name="download" type="stream">
 				<param name="bufferSize">1024</param>
             	<param name="contentType">application/octet-stream;charset=ISO8859-1</param>
-                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentDisposition">attachment;filename="${musicFileFileName}.mp3"</param>
                 <param name="inputName">downloadFile</param>
 			</result>
 		</action>
@@ -41,6 +46,17 @@
 			<result name="comment">/WEB-INF/views/comment.jsp</result>
 			<result name="post">/WEB-INF/views/post.jsp</result>
 		</action>
+		
+		<action name="collection" class="collection">
+			<result name="collect">/WEB-INF/views/post.jsp</result>
+			<result name="delete">/WEB-INF/views/user.jsp</result>
+		</action>
+		
+		<action name="admin" class="admin">
+			<result name="admin">/WEB-INF/views/admin.jsp</result>
+			<result name="error">/WEB-INF/views/error.jsp</result>
+			<result name="exit">/WEB-INF/views/main.jsp</result>
+		</action>
+
 	</package>
-	
 </struts>

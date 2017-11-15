@@ -1,5 +1,6 @@
 package service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -17,6 +18,13 @@ public class UserService extends BasicServiceAdapter implements UserServiceInter
 		// TODO Auto-generated method stub
 		return (User) sessionFactory.getCurrentSession().get(User.class, i);
 	}
+	
+	@Override
+	public void deleteById(int userId) {
+		// TODO Auto-generated method stub
+		String sql="delete from user where id="+userId;
+		sessionFactory.getCurrentSession().createSQLQuery(sql).executeUpdate();
+	}
 
 	@Override
 	public User checkUser(User u) {
@@ -31,6 +39,29 @@ public class UserService extends BasicServiceAdapter implements UserServiceInter
 	}
 	
 	@Override
+	public List<User> getUsers() {
+		// TODO Auto-generated method stub
+		String hql="from User order by id";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		query.setMaxResults(5);
+		return query.list();
+	}
+	
+	@Override
+	public List<User> getUsersByStr(String str) {
+		// TODO Auto-generated method stub
+		String hql="from User";
+		List<User> temp=sessionFactory.getCurrentSession().createQuery(hql).list();
+		List<User> users=new ArrayList<User>();
+		for(User u : temp) {
+			if(u.getName().indexOf(str)!=-1) {
+				users.add(u);
+			}
+		}
+		return users;
+	}
+	
+	@Override
 	public void update(Object o) {
 		// TODO Auto-generated method stub
 		User u=(User) o;
@@ -39,13 +70,6 @@ public class UserService extends BasicServiceAdapter implements UserServiceInter
 		query.setParameter(0, u.getSign()).setParameter(1, u.getSex())
 		.setParameter(2, u.getBirthday()).setParameter(3, u.getLocation()).setParameter(4, u.getEmail()).setParameter(5, u.getId());
 		query.executeUpdate();
-	}
-	
-	@Override
-	public List<Music> getMusics(int userId) {
-		String hql="from Music where userId="+userId;
-		List<Music> musics=sessionFactory.getCurrentSession().createQuery(hql).list();
-		return musics;
 	}
 	
 	public void addMany() {

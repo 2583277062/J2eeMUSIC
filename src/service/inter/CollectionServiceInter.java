@@ -7,4 +7,5 @@ import domain.Collection;
 public interface CollectionServiceInter extends BasicServiceInter {
 
 	public List<Collection> getByUserId(int userId);
+	public Collection getByUserPost(int userId,int  postId);
 }

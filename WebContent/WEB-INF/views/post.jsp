@@ -13,26 +13,37 @@ pageEncoding="UTF-8"%>
   <title>Document</title>
   <style type="text/css">
 /* 上部分样式 */
+body a{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+	body span{-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;}
+a:hover{color:red}
 *{margin:0px;}
 	.top-content{width:70%;height:44px;margin:0px auto;background-color:#b2b2b2}
-	a{text-decoration:none;display:block;font-size:16px;color:white}
+	.top-content a{text-decoration:none;display:block;font-size:16px;}
 	.top-description li{list-style:none;margin-left:20px;float:left;line-height:44px;}
 	.top-description .top-search{
 	width:325px;
 height:36px;}
 	.top-description .search-btn{
 	background: url(http://static.tianyaui.com/global/bbs/web/static/images/top-nav-bg_3264908.png) no-repeat #F7F7F7 0 -342px;width:30px;height: 30px;cursor: pointer;display: block;z-index: 1;margin-top: 8px;}
-	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;margin-top:15px;}
+	.top-description .music-btn{position:relative;border:none;background:transparent;cursor:pointer;color:#fff;}
 /* 上部分样式完毕 */
 /* 内容部分样式 */
 	.main-content{width:70%;margin:0px auto;padding:20px;text-align:center;}
 	.main-content .header span{font-size:30px;font-weight:bold;color:#817ed8;}
-	.main-content p{display:block;float:right;margin-top:30px;color:#78afed}
-	.main-content a{display:block;}
-	.top-description button{cursor:pointer;float:left;margin-left:30px;margin-bottom:20px;border-radius:10px;background-color:#cccccc;color:#ffffff;
-	}
+	.main-content p{display:inline-block;float:right;margin-top:30px;color:#78afed}
+	.main-content .top-description-content a{text-decoration:none;display:block;float:left;margin-top:40px;margin-bottom:20px;margin-left:20px;font-size:14px;border:2px solid #6fffff;border-radius:10px;background:#cccccc;color:#ffffff;box-shadow:0 0 10px #000040}
+	.main-content .top-description-content a:hover{color:red}
 	.info-content{border:2px solid red;width:100%;margin:10px;}
-	.bottom-description button{cursor:pointer;float:left;margin-left:30px;border-radius:10px;color:#ffffff;background-color:#cccccc;}
+	.bottom-description a{text-decoration:none;display:block;float:left;margin-top:20px;margin-bottom:20px;margin-left:20px;font-size:14px;border:2px solid #6fffff;border-radius:10px;background:#cccccc;color:#ffffff;box-shadow:0 0 10px #000040}
+	.bottom-description a:hover{color:red}
 
 	 #textarea {  
 				
@@ -55,8 +66,9 @@ height:36px;}
 	.bottom-description{width:100%;height:30px;}
 	.comment-content{margin-top:20px;width:100%;height:150px;}
 	.comment-description{width:100%;height:100px;}
-	.comment-btn button{cursor:pointer;float:right;margin-left:30px;border-radius:10px;color:#ffffff;background-color:#cccccc;}
-	.comment-btn span{padding-left:50px;line-height:30px;}
+	.comment-btn a{text-decoration:none;display:block;float:right;margin-top:20px;margin-bottom:20px;margin-left:20px;font-size:14px;border:2px solid #6fffff;border-radius:10px;background:#cccccc;color:#ffffff;box-shadow:0 0 10px #000040}
+	.comment-btn span{padding-left:50px;}
+	.comment-btn a:hover{color:red;}
 	
 /* 内容部分样式完毕 */
   </style>
@@ -123,6 +135,7 @@ height:36px;}
             };  
         </script>  
  </head>
+ 
  <body>
   <jsp:include page="/WEB-INF/views/head.jsp"></jsp:include>
 <div class="main-content">
@@ -130,52 +143,33 @@ height:36px;}
 		<span><s:property value="#session.post.title"/></span>
 		<p class="author">发帖作者：<s:property value="#session.post.user.name"/></p>
 	</div>
-	<div class="top-description">
-		<button class="ver-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">打赏</button>
-		<button class="man-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">看楼主</button>
-		<!--  <button class="dow-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">资源下载</button>-->
-		<a herf="post!download?type=classic&fileName=%{#session.post.musicName}">资源下载</a>
-		<button class="last-page" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">上一页</button>
-		<button class="next-pate" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">下一页</button>
+	<div class="top-description-content">
+		<a class="ver-btn" href="" >打赏</a>
+		<a class="man-btn" href="" >看楼主</a>
+		<a class="dow-btn" href="post!download?type=<s:property value="#session.post.type"/>&musicFileFileName=<s:property value="#session.post.musicName"/>" >资源下载</a>
+		<a class="last-page" href="">上一页</a>
+		<a class="next-pate" href="">下一页</a>
+		<s:if test="#session.post.user.id==#session.user.id">
+		<a href="post!delete">删帖</a>
+		</s:if>
 	</div>
 	
 	<div>
-	<textarea id="textarea">
+	<textarea id="textarea" readonly>
    		<s:property value="#session.post.content"/>
 	</textarea>
-	
 	</div>
 	
 	<div class="bottom-description">
-	<button class="rep-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">举报</button>
-	<button class="sha-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">分享</button>
-	<button class="hon-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">点赞</button>
-	<button class="res-btn" onmouseover="this.style.backgroundColor='#84ffff';
-		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
-		this.style.color='#fff'">回复</button>
-		<a href="comment!goComment">回复</a>
-		<a herf="post!download?type=classic&fileName=%{#session.post.musicName}">资源下载</a>
+		<a class="rep-btn" href="">举报</a>
+		<a class="sha-btn" 	href="">分享</a>
+		<a class="hon-btn" href="collection!collect">收藏</a>
+		<a class="res-btn" href="comment!goComment">回复</a>
 	</div>
 	
 	<s:iterator value="#session.comments" id="comment">
 	<div class="comment-content">
-		<textarea class="comment-description">
+		<textarea class="comment-description" readonly>
 			<s:property value="#comment.content"/>
 		</textarea>
 		<div class="comment-btn">
@@ -193,6 +187,11 @@ height:36px;}
 		<button class="hon-btn" onmouseover="this.style.backgroundColor='#84ffff';
 		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
 		this.style.color='#fff'">赞</button>
+		<s:if test="#comment.user.id==#session.user.id">
+		<a href="comment!delete?id=<s:property value="#comment.id"/>" class="rep-btn" onmouseover="this.style.backgroundColor='#84ffff';
+		this.style.color='red'" onmouseout="this.style.backgroundColor='#cccccc';
+		this.style.color='#fff'">删除</a>
+		</s:if>
 		</div>
 	</div>
 	</s:iterator>

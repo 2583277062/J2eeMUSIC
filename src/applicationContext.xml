@@ -51,7 +51,7 @@
      <property name="hibernateProperties">
 	    <value>
 	        	hibernate.dialect=org.hibernate.dialect.MySQLDialect
-	        	hibernate.hbm2ddl.auto=update
+	        	hibernate.hbm2ddl.auto=create
 				hibernate.show_sql=false
 	 </value>
     </property>
@@ -59,12 +59,14 @@
 
 <!-- Action -->
 <bean name="user" class="action.UserAction" scope="prototype"/>
-<bean id="post" class="action.PostAction" scope="prototype"/>
-<bean name="/comment" class="action.CommentAction" scope="prototype"/>
-<bean name="/collection" class="action.CollectionAction" scope="prototype"/>
+<bean name="post" class="action.PostAction" scope="prototype"/>
+<bean name="comment" class="action.CommentAction" scope="prototype"/>
+<bean name="collection" class="action.CollectionAction" scope="prototype"/>
+<bean name="admin" class="action.AdminAction" scope="prototype"/>
 
 <!-- Service -->
 <bean id="basicService" class="service.imp.BasicServiceAdapter"/>
+<bean id="musicService" class="service.imp.MusicService"/>
 <bean id="userService" class="service.imp.UserService"/>
 <bean id="postService" class="service.imp.PostService"/>
 <bean id="commentService" class="service.imp.CommentService"/>
